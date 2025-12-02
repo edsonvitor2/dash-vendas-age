@@ -12,5 +12,8 @@
   "devDependencies": {
     "@angular/build": "^21.0.1",
     "typescript": "^5.9.0"
+  },
+  "scripts": {
+    "build": "ng build"
   }
 }
