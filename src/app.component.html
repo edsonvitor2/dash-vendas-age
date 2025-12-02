@@ -1,0 +1,50 @@
+<div class="p-6 md:p-8">
+  <!-- Header -->
+  <header class="flex flex-col sm:flex-row justify-between items-center mb-8">
+    <div class="flex items-center mb-4 sm:mb-0">
+      <div class="bg-indigo-500 p-2 rounded-lg mr-4">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+        </svg>
+      </div>
+      <h1 class="text-3xl font-bold text-gray-800">Dashboard de Vendas</h1>
+    </div>
+    <div class="flex items-center space-x-2">
+       <input 
+         type="date" 
+         class="bg-white border border-gray-300 text-gray-700 sm:text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
+         [value]="startDate()"
+         (input)="onStartDateChange($event)">
+      <span class="text-gray-500">até</span>
+      <input 
+         type="date" 
+         class="bg-white border border-gray-300 text-gray-700 sm:text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
+         [value]="endDate()"
+         (input)="onEndDateChange($event)">
+      <button 
+        (click)="updateDashboard()"
+        class="px-5 py-2.5 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 focus:ring-4 focus:outline-none focus:ring-indigo-300">
+        Atualizar
+      </button>
+    </div>
+  </header>
+
+  <!-- KPI Cards Grid -->
+  <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+    @for (kpi of kpis(); track kpi.title) {
+      <app-kpi-card [kpi]="kpi"></app-kpi-card>
+    }
+  </div>
+
+  <!-- Main Content Grid -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <!-- Left Column: ROI Card -->
+    <div class="lg:col-span-1">
+       <app-roi-card [data]="roiData()"></app-roi-card>
+    </div>
+    <!-- Right Column: Seller Ranking -->
+    <div class="lg:col-span-2">
+      <app-seller-ranking [sellers]="sellerRanking()"></app-seller-ranking>
+    </div>
+  </div>
+</div>

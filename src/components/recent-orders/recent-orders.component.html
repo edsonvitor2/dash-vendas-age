@@ -1,0 +1,45 @@
+<div class="bg-white rounded-xl shadow-md p-6 h-full">
+  <div class="flex items-center mb-4">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-500 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M9 14h6M4 18h16" />
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5" />
+    </svg>
+    <h3 class="text-lg font-semibold text-gray-800">Ranking de Vendedores</h3>
+  </div>
+  <div class="overflow-x-auto">
+    <table class="w-full text-sm text-left text-gray-500">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+        <tr>
+          <th scope="col" class="py-3 px-2 text-center">Pos</th>
+          <th scope="col" class="py-3 px-2">Vendedor</th>
+          <th scope="col" class="py-3 px-2 text-center">Conc. Internet</th>
+          <th scope="col" class="py-3 px-2 text-center">Conc. Móvel</th>
+          <th scope="col" class="py-3 px-2 text-center">Efet. Internet</th>
+          <th scope="col" class="py-3 px-2 text-center">Efet. Móvel</th>
+          <th scope="col" class="py-3 px-2 text-center">Leads</th>
+          <th scope="col" class="py-3 px-2 text-center">Conv.</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (seller of sellers(); track seller.position) {
+          <tr class="bg-white border-b hover:bg-gray-50">
+            <td class="py-4 px-2 font-medium text-gray-900 text-center">{{ seller.position }}</td>
+            <td class="py-4 px-2 font-medium text-gray-900 whitespace-nowrap">{{ seller.vendedor }}</td>
+            <td class="py-4 px-2 text-center">{{ seller.concluidasInternet }}</td>
+            <td class="py-4 px-2 text-center">{{ seller.concluidasMovel }}</td>
+            <td class="py-4 px-2 text-center">{{ seller.efetivadasInternet }}</td>
+            <td class="py-4 px-2 text-center">{{ seller.efetivadasMovel }}</td>
+            <td class="py-4 px-2 text-center">{{ seller.leads }}</td>
+            <td class="py-4 px-2 text-center">
+              <span class="font-semibold text-green-600">{{ seller.conv }}</span>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="8" class="text-center py-8 text-gray-500">Nenhum dado de vendedor para exibir.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+@if (data()) {
+<div class="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl shadow-lg p-6 text-white flex flex-col">
+  <div class="flex items-center mb-6">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6" /></svg>
+    <h3 class="text-lg font-semibold">Retorno sobre Investimento</h3>
+  </div>
+
+  <div class="flex-grow flex flex-col justify-around">
+    <!-- ROI -->
+    <div class="bg-white/20 rounded-lg p-4">
+      <p class="text-sm opacity-80">ROI</p>
+      <p class="text-3xl font-bold">
+        {{ data().roi.toFixed(2) }}x 
+        <span class="text-lg font-normal opacity-80">({{ (data().roi * 100).toFixed(0) }}%)</span>
+      </p>
+    </div>
+
+    <!-- Valor Investido -->
+    <div class="bg-white/20 rounded-lg p-4">
+      <p class="text-sm opacity-80">Valor Investido</p>
+      <p class="text-2xl font-bold">{{ data().investido.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }}</p>
+    </div>
+
+    <!-- Valor Vendido -->
+    <div class="bg-white/20 rounded-lg p-4">
+      <p class="text-sm opacity-80">Valor Vendido</p>
+      <p class="text-2xl font-bold">{{ data().vendido.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }}</p>
+    </div>
+  </div>
+</div>
+} @else {
+  <div class="bg-gray-200 rounded-xl shadow-md p-6 h-full flex items-center justify-center">
+    <p class="text-gray-500">Carregando dados de ROI...</p>
+  </div>
+}
